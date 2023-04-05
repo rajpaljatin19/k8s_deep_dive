@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demoapp
+spec:
+  selector:
+    matchLabels:
+      app: demoapp
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: demoapp
+    spec:
+      containers:
+      - name: demoapp
+        image: rajpaljatin19/pythonflask-demoapp:latest
+        imagePullPolicy: Always
+        ports:
+        - name: demoapp
+          containerPort: 8000
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demoapp-svc
+spec:
+  selector:
+    app: demoapp
+  ports:
+  - port: 6000
+    targetPort: 8000
+    protocol: "TCP"
+  type: LoadBalancer
