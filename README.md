@@ -113,7 +113,7 @@ $ docker image tag pythonflask-demoapp:latest rajpaljatin19/pythonflask-demoapp:
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker push <docker_hub_userid>/pythonflask-demoapp:latest
-The push refers to repository [docker.io/rajpaljatin19/pythonflask-demoapp]
+The push refers to repository [docker.io/<docker_hub_userid>/pythonflask-demoapp]
 de8bb64b3075: Pushed
 0aaf8cc6a65a: Pushed
 cf99cfa2e6a8: Pushed
@@ -124,6 +124,7 @@ ccd22ec8669c: Mounted from library/python
 3bea4e7d7b00: Mounted from library/python
 latest: digest: sha256:0499a50032a24be27e420f864422e63ebc1ea712a57ffe7a362b3b699bde339a size: 1995
 ```
+(This step requires you to create the account creation on [Docker hub](https://hub.docker.com/). if you already have the account, replace <docker_hub_userid> with your docker account name in the command )
 
 8. Now that you have pushed the image to docker hub, lets start our ```minikube``` instance. [Minikube](https://minikube.sigs.k8s.io/docs/start/) is the local version of kubernetes cluster that you can run on your system
 
