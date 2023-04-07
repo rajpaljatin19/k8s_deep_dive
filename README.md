@@ -52,9 +52,11 @@ jatinrajpal@Jatins-MacBook-Air docker % docker build -t demoapp .
 
 3. Verify of the image is created post running ```docker build``` command
 
-    jatinrajpal@Jatins-MacBook-Air docker % docker image ls
-    REPOSITORY                                 TAG       IMAGE ID       CREATED         SIZE
-    demoapp                                    latest    0523a04ecfee   8 seconds ago   122MB
+```
+jatinrajpal@Jatins-MacBook-Air docker % docker image ls
+REPOSITORY                                 TAG       IMAGE ID       CREATED         SIZE
+demoapp                                    latest    0523a04ecfee   8 seconds ago   122MB
+```
 
 4. Run ```docker run``` command to run your containerized application locally on the machine
 
