@@ -240,10 +240,9 @@ jatinrajpal@Jatins-MacBook-Air ~ %
 
 15. Once everything is done, clean your deployments and K8s minikube
 ```
-jatinrajpal@Jatins-MacBook-Air app % kubectl delete deployment demoapp ### deleting kubernetes deployment
+jatinrajpal@Jatins-MacBook-Air app % kubectl delete deployment demoapp 
 deployment.apps "demoapp" deleted
-
-jatinrajpal@Jatins-MacBook-Air app % minikube delete ### destroying minikube kubernetes cluster
+jatinrajpal@Jatins-MacBook-Air app % minikube delete
 🔥  Deleting "minikube" in docker ...
 🔥  Deleting container "minikube" ...
 🔥  Removing /Users/jatinrajpal/.minikube/machines/minikube ...
