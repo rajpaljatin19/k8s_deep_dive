@@ -145,6 +145,7 @@ jatinrajpal@Jatins-MacBook-Air ~ % minikube start
 9. Then navigate to ```k8s_configs ``` directory and run ```kubectl apply -f``` to your deployment ```YAML``` config file
 
 ```
+jatinrajpal@Jatins-MacBook-Air docker % cd ../k8s_configs
 jatinrajpal@Jatins-MacBook-Air k8s % kubectl apply -f deployment.yaml
 deployment.apps/demoapp created
 service/demoapp-svc created
