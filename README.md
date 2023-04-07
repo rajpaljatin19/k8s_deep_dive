@@ -18,6 +18,7 @@ Running an app locally:
 
 2. Navigate to ```k8s_deep_dive/app``` directory and run the app manually
 ```
+jatinrajpal@Jatins-MacBook-Air demo % cd k8s_deep_dive/app
 jatinrajpal@Jatins-MacBook-Air app % export FLASK_APP=prog.py
 jatinrajpal@Jatins-MacBook-Air app % flask run
  * Serving Flask app 'prog.py'
