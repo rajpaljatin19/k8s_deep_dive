@@ -31,7 +31,7 @@ Press CTRL+C to quit
 3. Navigate to ```k8s_deep_dive/docker``` directory and run ```docker build``` command to build the app
     
 ```
-jatinrajpal@Jatins-MacBook-Air demo % cd k8s_deep_dive/docker
+jatinrajpal@Jatins-MacBook-Air demo % cd ../k8s_deep_dive/docker
 jatinrajpal@Jatins-MacBook-Air docker % docker build -t demoapp .
 [+] Building 10.9s (9/9) FINISHED
  => [internal] load build definition from Dockerfile                                                         0.0s
