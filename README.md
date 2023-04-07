@@ -13,9 +13,10 @@ Receiving objects: 100% (22/22), 7.22 KiB | 7.22 MiB/s, done.
 Resolving deltas: 100% (1/1), done.
 ```
 
-2. Navigate to ```docker``` directory and run ```docker build``` command to build the app
+2. Navigate to ```k8s_deep_dive/docker``` directory and run ```docker build``` command to build the app
     
 ```
+jatinrajpal@Jatins-MacBook-Air demo % cd k8s_deep_dive/docker
 jatinrajpal@Jatins-MacBook-Air docker % docker build -t demoapp .
 [+] Building 10.9s (9/9) FINISHED
  => [internal] load build definition from Dockerfile                                                         0.0s
@@ -68,7 +69,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 Press CTRL+C to quit
 ```
 
-5. Now that your flask webservice is up and running, calling your service to make sure you are getting the desired output
+5. Now that your flask webservice is up and running, call your service to make sure you are getting the desired output (via seperate terminal)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
@@ -175,7 +176,7 @@ jatinrajpal@Jatins-MacBook-Air k8s % minikube tunnel
 🏃  Starting tunnel for service demoapp-svc.
 ```
 
-12. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```
+12. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```  (via seperate terminal window)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % kubectl get svc
@@ -185,7 +186,7 @@ kubernetes    ClusterIP      10.96.0.1        <none>        443/TCP          2d
 jatinrajpal@Jatins-MacBook-Air ~ %
 ```
 
- 13. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running.
+ 13. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running (via seperate terminal window)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v "http://127.0.0.1:6000"
