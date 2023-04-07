@@ -14,7 +14,7 @@ Receiving objects: 100% (22/22), 7.22 KiB | 7.22 MiB/s, done.
 Resolving deltas: 100% (1/1), done.
 ```
 
-Running an app locally:
+## Running an app locally:
 
 2. Navigate to ```k8s_deep_dive/app``` directory and run the app manually
 ```
@@ -27,6 +27,8 @@ WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://127.0.0.1:5000
 Press CTRL+C to quit
 ```
+
+## Running app via Docker
 
 3. Navigate to ```k8s_deep_dive/docker``` directory and run ```docker build``` command to build the app
     
@@ -117,6 +119,8 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
 * Closing connection 0
 </html>%
 ```
+
+## Running app on Kubernetes
 
 7. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
 
