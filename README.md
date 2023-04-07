@@ -238,12 +238,12 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v "http://127.0.0.1:6000"
 jatinrajpal@Jatins-MacBook-Air ~ %
 ```
 
-15. Once everything is done, clean your deployments and env
+15. Once everything is done, clean your deployments and K8s minikube
 ```
 jatinrajpal@Jatins-MacBook-Air app % kubectl delete deployment demoapp ### deleting kubernetes deployment
 deployment.apps "demoapp" deleted
 
-jatinrajpal@Jatins-MacBook-Air app % minikube delete. ### destroying minikube kubernetes cluster
+jatinrajpal@Jatins-MacBook-Air app % minikube delete ### destroying minikube kubernetes cluster
 🔥  Deleting "minikube" in docker ...
 🔥  Deleting container "minikube" ...
 🔥  Removing /Users/jatinrajpal/.minikube/machines/minikube ...
