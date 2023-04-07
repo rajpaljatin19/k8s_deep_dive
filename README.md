@@ -49,13 +49,13 @@ jatinrajpal@Jatins-MacBook-Air docker % docker build -t demoapp .
  => => naming to docker.io/library/demoapp                                                                   0.0s
 ```
 
-4 Verify of the image is created post running ```docker build``` command
+3. Verify of the image is created post running ```docker build``` command
 
     jatinrajpal@Jatins-MacBook-Air docker % docker image ls
     REPOSITORY                                 TAG       IMAGE ID       CREATED         SIZE
     demoapp                                    latest    0523a04ecfee   8 seconds ago   122MB
 
-5. Run ```docker run``` command to run your containerized application locally on the machine
+4. Run ```docker run``` command to run your containerized application locally on the machine
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker run -p 8000:8000 demoapp
@@ -68,7 +68,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 Press CTRL+C to quit
 ```
 
-6. Now that your flask webservice is up and running, calling your service to make sure you are getting the desired output
+5. Now that your flask webservice is up and running, calling your service to make sure you are getting the desired output
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
@@ -100,13 +100,13 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
 </html>%
 ```
 
-7. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
+6. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
 
 ```
 $ docker image tag pythonflask-demoapp:latest rajpaljatin19/pythonflask-demoapp:latest
 ```
 
-9. Now run ```docker push``` command to push your docker image to docker hub or any other image registry. For our example, i am using docker hub.
+7. Now run ```docker push``` command to push your docker image to docker hub or any other image registry. For our example, i am using docker hub.
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker push <docker_hub_userid>/pythonflask-demoapp:latest
@@ -122,7 +122,7 @@ ccd22ec8669c: Mounted from library/python
 latest: digest: sha256:0499a50032a24be27e420f864422e63ebc1ea712a57ffe7a362b3b699bde339a size: 1995
 ```
 
-9. Now that you have pushed the image to docker hub, lets start our ```minikube``` instance. [Minikube](https://minikube.sigs.k8s.io/docs/start/) is the local version of kubernetes cluster that you can run on your system
+8. Now that you have pushed the image to docker hub, lets start our ```minikube``` instance. [Minikube](https://minikube.sigs.k8s.io/docs/start/) is the local version of kubernetes cluster that you can run on your system
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % minikube start
@@ -139,7 +139,7 @@ jatinrajpal@Jatins-MacBook-Air ~ % minikube start
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-10. Then navigate to ```k8s_configs ``` directory and run ```kubectl apply -f``` to your deployment ```YAML``` config file
+9. Then navigate to ```k8s_configs ``` directory and run ```kubectl apply -f``` to your deployment ```YAML``` config file
 
 ```
 jatinrajpal@Jatins-MacBook-Air k8s % kubectl apply -f deployment.yaml
@@ -147,7 +147,7 @@ deployment.apps/demoapp created
 service/demoapp-svc created
 ```
 
-11. Check the deployment and services created as per your YAML
+10. Check the deployment and services created as per your YAML
    
 ```
 jatinrajpal@Jatins-MacBook-Air k8s_deep_dive % kubectl get pods
@@ -166,7 +166,7 @@ demoapp-svc   LoadBalancer   10.104.106.253   <pending>     6000:31494/TCP   3s
 kubernetes    ClusterIP      10.96.0.1        <none>        443/TCP          2d
 ```
 
-12.  Run ```minikube tunnel```. Tunnel creates a route to services deployed with type LoadBalancer and sets their Ingress to their ClusterIP
+11.  Run ```minikube tunnel```. Tunnel creates a route to services deployed with type LoadBalancer and sets their Ingress to their ClusterIP
 
 ```
 jatinrajpal@Jatins-MacBook-Air k8s % minikube tunnel
@@ -175,7 +175,7 @@ jatinrajpal@Jatins-MacBook-Air k8s % minikube tunnel
 🏃  Starting tunnel for service demoapp-svc.
 ```
 
-13. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```
+12. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % kubectl get svc
@@ -185,7 +185,7 @@ kubernetes    ClusterIP      10.96.0.1        <none>        443/TCP          2d
 jatinrajpal@Jatins-MacBook-Air ~ %
 ```
 
- 14. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running.
+ 13. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running.
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v "http://127.0.0.1:6000"
