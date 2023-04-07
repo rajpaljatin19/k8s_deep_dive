@@ -1,5 +1,6 @@
 # k8s_deep_dive session
 
+
 1. Cloning to Git Repo:
 
 ```
@@ -13,7 +14,20 @@ Receiving objects: 100% (22/22), 7.22 KiB | 7.22 MiB/s, done.
 Resolving deltas: 100% (1/1), done.
 ```
 
-2. Navigate to ```k8s_deep_dive/docker``` directory and run ```docker build``` command to build the app
+Running an app locally:
+
+2. Navigate to ```k8s_deep_dive/app``` directory and run the app manually
+```
+jatinrajpal@Jatins-MacBook-Air app % export FLASK_APP=prog.py
+jatinrajpal@Jatins-MacBook-Air app % flask run
+ * Serving Flask app 'prog.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+```
+
+3. Navigate to ```k8s_deep_dive/docker``` directory and run ```docker build``` command to build the app
     
 ```
 jatinrajpal@Jatins-MacBook-Air demo % cd k8s_deep_dive/docker
@@ -50,7 +64,7 @@ jatinrajpal@Jatins-MacBook-Air docker % docker build -t demoapp .
  => => naming to docker.io/library/demoapp                                                                   0.0s
 ```
 
-3. Verify of the image is created post running ```docker build``` command
+4. Verify of the image is created post running ```docker build``` command
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker image ls
@@ -58,7 +72,7 @@ REPOSITORY                                 TAG       IMAGE ID       CREATED     
 demoapp                                    latest    0523a04ecfee   8 seconds ago   122MB
 ```
 
-4. Run ```docker run``` command to run your containerized application locally on the machine
+5. Run ```docker run``` command to run your containerized application locally on the machine
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker run -p 8000:8000 demoapp
@@ -71,7 +85,7 @@ WARNING: This is a development server. Do not use it in a production deployment.
 Press CTRL+C to quit
 ```
 
-5. Now that your flask webservice is up and running, call your service to make sure you are getting the desired output (via seperate terminal)
+6. Now that your flask webservice is up and running, call your service to make sure you are getting the desired output (via seperate terminal)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
@@ -103,13 +117,13 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
 </html>%
 ```
 
-6. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
+7. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
 
 ```
 $ docker image tag pythonflask-demoapp:latest rajpaljatin19/pythonflask-demoapp:latest
 ```
 
-7. Now run ```docker push``` command to push your docker image to docker hub or any other image registry. For our example, i am using docker hub.
+8. Now run ```docker push``` command to push your docker image to docker hub or any other image registry. For our example, i am using docker hub.
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % docker push <docker_hub_userid>/pythonflask-demoapp:latest
@@ -126,7 +140,7 @@ latest: digest: sha256:0499a50032a24be27e420f864422e63ebc1ea712a57ffe7a362b3b699
 ```
 (This step requires you to create the account creation on [Docker hub](https://hub.docker.com/). if you already have the account, replace <docker_hub_userid> with your docker account name in the command )
 
-8. Now that you have pushed the image to docker hub, lets start our ```minikube``` instance. [Minikube](https://minikube.sigs.k8s.io/docs/start/) is the local version of kubernetes cluster that you can run on your system
+9. Now that you have pushed the image to docker hub, lets start our ```minikube``` instance. [Minikube](https://minikube.sigs.k8s.io/docs/start/) is the local version of kubernetes cluster that you can run on your system
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % minikube start
@@ -143,7 +157,7 @@ jatinrajpal@Jatins-MacBook-Air ~ % minikube start
 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-9. Then navigate to ```k8s_configs ``` directory and run ```kubectl apply -f``` to your deployment ```YAML``` config file
+10. Then navigate to ```k8s_configs ``` directory and run ```kubectl apply -f``` to your deployment ```YAML``` config file
 
 ```
 jatinrajpal@Jatins-MacBook-Air docker % cd ../k8s_configs
@@ -152,7 +166,7 @@ deployment.apps/demoapp created
 service/demoapp-svc created
 ```
 
-10. Check the deployment and services created as per your YAML
+11. Check the deployment and services created as per your YAML
    
 ```
 jatinrajpal@Jatins-MacBook-Air k8s_deep_dive % kubectl get pods
@@ -171,7 +185,7 @@ demoapp-svc   LoadBalancer   10.104.106.253   <pending>     6000:31494/TCP   3s
 kubernetes    ClusterIP      10.96.0.1        <none>        443/TCP          2d
 ```
 
-11.  Run ```minikube tunnel```. Tunnel creates a route to services deployed with type LoadBalancer and sets their Ingress to their ClusterIP
+12.  Run ```minikube tunnel```. Tunnel creates a route to services deployed with type LoadBalancer and sets their Ingress to their ClusterIP
 
 ```
 jatinrajpal@Jatins-MacBook-Air k8s % minikube tunnel
@@ -180,7 +194,7 @@ jatinrajpal@Jatins-MacBook-Air k8s % minikube tunnel
 🏃  Starting tunnel for service demoapp-svc.
 ```
 
-12. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```  (via seperate terminal window)
+13. Once tunnel is started, you will notice ```EXTERNAL-IP``` will start  coming in ```kubectl get svc```  (via seperate terminal window)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % kubectl get svc
@@ -190,7 +204,7 @@ kubernetes    ClusterIP      10.96.0.1        <none>        443/TCP          2d
 jatinrajpal@Jatins-MacBook-Air ~ %
 ```
 
- 13. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running (via seperate terminal window)
+ 14. You can then run ```curl``` to validate if your app is running or not. For our case, its very much up and running (via seperate terminal window)
 
 ```
 jatinrajpal@Jatins-MacBook-Air ~ % curl -v "http://127.0.0.1:6000"
@@ -223,5 +237,15 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v "http://127.0.0.1:6000"
 jatinrajpal@Jatins-MacBook-Air ~ %
 ```
 
+15. Once everything is done, clean your deployments and env
+```
+jatinrajpal@Jatins-MacBook-Air app % kubectl delete deployment demoapp ### deleting kubernetes deployment
+deployment.apps "demoapp" deleted
 
+jatinrajpal@Jatins-MacBook-Air app % minikube delete. ### destroying minikube kubernetes cluster
+🔥  Deleting "minikube" in docker ...
+🔥  Deleting container "minikube" ...
+🔥  Removing /Users/jatinrajpal/.minikube/machines/minikube ...
+💀  Removed all traces of the "minikube" cluster.
+```
 
