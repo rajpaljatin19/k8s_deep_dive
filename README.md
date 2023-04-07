@@ -121,7 +121,7 @@ jatinrajpal@Jatins-MacBook-Air ~ % curl -v http://127.0.0.1:8000
 7. Now that you've tested the app locally, lets run this on```kubernetes```. First step towards that is to run ```docker tag``` to tag your image
 
 ```
-$ docker image tag pythonflask-demoapp:latest rajpaljatin19/pythonflask-demoapp:latest
+$ docker image tag demoapp:latest rajpaljatin19/pythonflask-demoapp:latest
 ```
 
 8. Now run ```docker push``` command to push your docker image to docker hub or any other image registry. For our example, i am using docker hub.
